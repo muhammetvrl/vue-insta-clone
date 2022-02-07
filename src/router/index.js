@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/home/index.vue";
 
 Vue.use(VueRouter);
 
@@ -11,13 +11,48 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/profile",
+    name: "Profile",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/profile/index.vue"),
+    children: [
+      {
+        path: "post",
+        name: "Profile Post",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/profile/post.vue"),
+      },
+      {
+        path: "igtv",
+        name: "Profile IGTV",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/profile/igtv.vue"),
+      },
+      {
+        path: "save",
+        name: "Profile Saved",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/profile/save.vue"),
+      },
+      {
+        path: "tag",
+        name: "Tag",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/profile/tag.vue"),
+      },
+    ],
+  },
+  {
+    path: "/direct",
+    name: "Direct",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/direct/index.vue"),
+  },
+  {
+    path: "/explore",
+    name: "Explore",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/explore/index.vue"),
   },
 ];
 
